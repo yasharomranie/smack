@@ -15,18 +15,14 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="8dp"
+        android:id="@+id/header_nav_useriamge"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="28dp"
         android:contentDescription="@string/nav_header_desc"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/profiledefault" />
 
     <TextView
@@ -34,12 +30,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
         android:fontFamily="@font/vazir_light_fd"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:text="یاشار عمرانی"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/header_nav_useriamge"
+        app:layout_constraintTop_toTopOf="@+id/header_nav_useriamge" />
 
     <TextView
         android:id="@+id/textView"
@@ -47,7 +45,36 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="Yasharomranie26@gmail.com"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
+        android:textSize="10sp"
+        app:layout_constraintStart_toEndOf="@+id/header_nav_useriamge"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/transparent"
+        android:fontFamily="@font/vazir_light_fd"
+        android:onClick="headernav_login"
+        android:text="وارد شوید"
+        android:textAlignment="viewStart"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header_nav_useriamge"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageButton
+        android:id="@+id/header_nav_addchanel_btn"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:background="@android:color/transparent"
+        android:onClick="add_chanle_click"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_add" />
 
 </android.support.constraint.ConstraintLayout>
