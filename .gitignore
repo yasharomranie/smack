@@ -8,3 +8,7 @@
 /build
 /captures
 .externalNativeBuild
+
+# Python bytecode cache (e.g. from running skill scripts)
+__pycache__/
+*.pyc
