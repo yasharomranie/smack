@@ -11,7 +11,7 @@
     --surface-2:#ECD8C6;
     --ink:#2B1710;
     --ink-soft:#6B4B3A;
-    --accent:#9C5A34;
+    --accent:#8B4E2C;
     --accent-2:#6E2439;
     --line:rgba(43,23,16,.15);
     --shadow:rgba(43,23,16,.20);
@@ -74,6 +74,14 @@
   h1,h2,h3{font-family:var(--font-display);text-wrap:balance;}
   :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px;}
 
+  .skip-link{
+    position:fixed;top:-100px;right:16px;z-index:100;
+    background:var(--accent);color:var(--surface);
+    padding:12px 20px;border-radius:0 0 10px 10px;
+    font-size:.9rem;font-weight:700;transition:top .2s ease;
+  }
+  .skip-link:focus{top:0;}
+
   .wrap{ direction:rtl; }
   .container{
     max-width:1120px;
@@ -110,9 +118,9 @@
   }
   .rail a{
     width:11px;height:11px;border-radius:50%;
-    display:block;
+    display:block;cursor:pointer;
     border:1px solid var(--line);
-    transition:transform .25s ease, box-shadow .25s ease;
+    transition:transform .2s ease, box-shadow .2s ease;
   }
   .rail a[data-c="espresso"]{background:var(--sw-espresso);}
   .rail a[data-c="ash"]{background:var(--sw-ash);}
@@ -143,11 +151,11 @@
   .nav-links a:hover{color:var(--accent);}
   @media (max-width:820px){ .nav-links{display:none;} }
   .btn{
-    display:inline-flex;align-items:center;gap:8px;
-    padding:12px 22px;border-radius:999px;
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    min-height:46px;padding:12px 22px;border-radius:999px;
     font-size:.92rem;font-weight:700;
     border:1px solid transparent;cursor:pointer;
-    transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+    transition:transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease, color .2s ease;
     font-family:var(--font-body);
   }
   .btn:hover{transform:translateY(-2px);}
@@ -323,9 +331,11 @@
   .field label{font-size:.85rem;color:var(--ink-soft);}
   .field input,.field select,.field textarea{
     background:var(--bg);border:1px solid var(--line);border-radius:10px;
-    padding:12px 14px;font-family:var(--font-body);font-size:.95rem;color:var(--ink);
-    resize:vertical;
+    min-height:46px;padding:12px 14px;font-family:var(--font-body);font-size:.95rem;color:var(--ink);
+    resize:vertical;transition:border-color .2s ease;
   }
+  .field input:hover,.field select:hover,.field textarea:hover{border-color:var(--accent);}
+  .field select{cursor:pointer;}
   .field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
   @media (max-width:480px){ .field-row{grid-template-columns:1fr;} }
   .note-ok{
@@ -338,8 +348,9 @@
   .info-item{display:flex;gap:14px;}
   .info-item .ico{
     width:40px;height:40px;border-radius:10px;background:var(--surface);border:1px solid var(--line);
-    display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.1rem;
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--accent);
   }
+  .info-item .ico svg{width:18px;height:18px;}
   .info-item h3{font-size:.95rem;margin-bottom:4px;}
   .info-item p{color:var(--ink-soft);font-size:.88rem;}
 
@@ -348,6 +359,7 @@
   .footer-inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;margin-bottom:28px;}
   .footer-brand{font-family:var(--font-display);font-weight:800;font-size:1.15rem;}
   .footer-links{display:flex;gap:22px;font-size:.88rem;color:var(--ink-soft);flex-wrap:wrap;}
+  .footer-links a{transition:color .2s ease;cursor:pointer;}
   .footer-links a:hover{color:var(--accent);}
   .footer-bottom{border-top:1px solid var(--line);padding-top:20px;font-size:.78rem;color:var(--ink-soft);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
   .swatch-strip{display:flex;gap:6px;margin-bottom:14px;}
@@ -358,31 +370,34 @@
 <body>
 <div class="wrap" dir="rtl" lang="fa">
 
+  <a href="#main" class="skip-link">رفتن به محتوای اصلی</a>
+
   <nav class="rail" aria-hidden="true">
-    <a href="#hero" data-c="espresso" title="آغاز"></a>
-    <a href="#about" data-c="ash" title="درباره ما"></a>
-    <a href="#services" data-c="copper" title="خدمات"></a>
-    <a href="#process" data-c="caramel" title="فرآیند"></a>
-    <a href="#gallery" data-c="honey" title="گالری"></a>
-    <a href="#testimonials" data-c="rosewood" title="نظرات"></a>
-    <a href="#pricing" data-c="burgundy" title="تعرفه"></a>
-    <a href="#booking" data-c="champagne" title="رزرو"></a>
+    <a href="#hero" tabindex="-1" data-c="espresso" title="آغاز"></a>
+    <a href="#about" tabindex="-1" data-c="ash" title="درباره ما"></a>
+    <a href="#services" tabindex="-1" data-c="copper" title="خدمات"></a>
+    <a href="#process" tabindex="-1" data-c="caramel" title="فرآیند"></a>
+    <a href="#gallery" tabindex="-1" data-c="honey" title="گالری"></a>
+    <a href="#testimonials" tabindex="-1" data-c="rosewood" title="نظرات"></a>
+    <a href="#pricing" tabindex="-1" data-c="burgundy" title="تعرفه"></a>
+    <a href="#booking" tabindex="-1" data-c="champagne" title="رزرو"></a>
   </nav>
 
   <header class="nav">
     <div class="container nav-inner">
       <div class="brand">رنگدان <small>ATELIER RANGDAN</small></div>
-      <div class="nav-links">
+      <nav class="nav-links" aria-label="پیمایش اصلی">
         <a href="#services">خدمات</a>
         <a href="#process">فرآیند</a>
         <a href="#gallery">گالری</a>
         <a href="#testimonials">نظرات</a>
         <a href="#pricing">تعرفه</a>
-      </div>
+      </nav>
       <a href="#booking" class="btn btn-primary">رزرو نوبت</a>
     </div>
   </header>
 
+  <main id="main">
   <section class="hero" id="hero">
     <div class="container hero-grid">
       <div>
@@ -596,15 +611,15 @@
         </div>
         <div class="info-list reveal">
           <div class="info-item">
-            <div class="ico">📍</div>
+            <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div>
             <div><h3>آدرس آتلیه</h3><p>تهران، خیابان ولیعصر، نرسیده به میدان ونک، کوچه‌ی بهار، پلاک ۱۲</p></div>
           </div>
           <div class="info-item">
-            <div class="ico">☎️</div>
+            <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 17.5c-5-1-9-5-10-10 0-1.2 1-2.5 2.3-2.5.6 0 1.1.3 1.4.9l1 2c.3.6.1 1.3-.3 1.7l-1 1c.9 2 2.5 3.6 4.5 4.5l1-1c.4-.4 1.1-.6 1.7-.3l2 1c.6.3.9.8.9 1.4 0 1.3-1.3 2.3-2.5 2.3Z"/></svg></div>
             <div><h3>تماس و هماهنگی</h3><p style="direction:ltr;text-align:right;">۰۲۱‑۸۸۰۰‑۰۰۰۰</p></div>
           </div>
           <div class="info-item">
-            <div class="ico">🕘</div>
+            <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></div>
             <div><h3>ساعات پذیرش</h3><p>شنبه تا پنجشنبه، ۱۰ صبح تا ۸ شب</p></div>
           </div>
         </div>
@@ -614,11 +629,11 @@
         <div class="field-row">
           <div class="field">
             <label for="fname">نام و نام خانوادگی</label>
-            <input id="fname" type="text" placeholder="مثلاً سارا محمدی" required>
+            <input id="fname" type="text" name="name" autocomplete="name" placeholder="مثلاً سارا محمدی" required>
           </div>
           <div class="field">
             <label for="fphone">شماره تماس</label>
-            <input id="fphone" type="tel" placeholder="۰۹xx xxx xxxx" required>
+            <input id="fphone" type="tel" name="tel" autocomplete="tel" inputmode="tel" placeholder="۰۹xx xxx xxxx" required>
           </div>
         </div>
         <div class="field">
@@ -646,6 +661,8 @@
       </form>
     </div>
   </section>
+
+  </main>
 
   <footer class="site">
     <div class="container">
