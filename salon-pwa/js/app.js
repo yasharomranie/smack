@@ -100,8 +100,10 @@
 
     if (toggle && links) {
       const fab = $('.booking-fab');
+      const backdrop = $('#navBackdrop');
       const setOpen = (open) => {
         links.classList.toggle('is-open', open);
+        if (backdrop) backdrop.classList.toggle('is-visible', open);
         toggle.setAttribute('aria-expanded', String(open));
         document.body.style.overflow = open ? 'hidden' : '';
         // The FAB is fixed at body level (outside the header's stacking
@@ -111,6 +113,10 @@
 
       toggle.addEventListener('click', () => setOpen(!links.classList.contains('is-open')));
       $$('.nav-links a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+      // Tapping the dimmed area outside the panel closes it too — without
+      // this the menu feels stuck on touch devices, where there's no
+      // "click elsewhere" affordance the way a mouse cursor implies one.
+      if (backdrop) backdrop.addEventListener('click', () => setOpen(false));
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && links.classList.contains('is-open')) {
           setOpen(false);

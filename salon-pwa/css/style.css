@@ -282,9 +282,29 @@ textarea:focus-visible,
   justify-content: center;
 }
 .nav-toggle svg { width: 22px; height: 22px; }
+.nav-backdrop { display: none; }
 
 @media (max-width: 860px) {
   .nav-toggle { display: inline-flex; }
+  .nav-backdrop {
+    display: block;
+    position: fixed;
+    /* Not `inset: 0`: .site-header has backdrop-filter, which (like
+       transform) makes it the containing block for fixed descendants —
+       `bottom: 0` would then resolve against the header's own ~76px box
+       instead of the viewport and collapse this to zero height. Sizing
+       explicitly with a viewport unit sidesteps that. */
+    inset-inline: 0;
+    top: var(--header-h);
+    height: calc(100dvh - var(--header-h));
+    background: rgba(74, 16, 48, 0.45);
+    z-index: 40;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 280ms ease, visibility 280ms;
+  }
+  .nav-backdrop.is-visible { opacity: 1; visibility: visible; pointer-events: auto; }
   .nav-links {
     position: fixed;
     inset-inline-start: 0;
@@ -300,6 +320,7 @@ textarea:focus-visible,
     transition: transform 280ms ease;
     box-shadow: var(--shadow-lg);
     overflow-y: auto;
+    z-index: 50;
   }
   html[dir="rtl"] .nav-links { transform: translateX(105%); }
   .nav-links.is-open,
